@@ -1,4 +1,5 @@
-for i = 1, 3 do
-    turtle.digDown()
-    turtle.down(1)
-  end
+
+for u=1,16 do
+  turtle.digDown()
+    turtle.dropDown()
+end
