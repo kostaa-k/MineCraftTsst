@@ -1,9 +1,11 @@
 
 local height = 5
+if #arg > 0 then height = tonumber(arg[1]) end
 function turtleDigDown(numTiles)
   for i=0,numTiles do 
     if(turtle.detectDown() == true) then
       turtle.digDown()
+      turtle.down()
     else
       turtle.down()
     end
@@ -14,6 +16,7 @@ function turtleComeUp(numTiles)
   for i=0,numTiles do 
     if(turtle.detectUp() == true) then
       turtle.digUp()
+      turtle.up()
     else
       turtle.up()
     end
@@ -21,4 +24,4 @@ function turtleComeUp(numTiles)
 end
 
 turtleDigDown(height)
-turtleDigUp(height)
+turtleComeUp(height)
