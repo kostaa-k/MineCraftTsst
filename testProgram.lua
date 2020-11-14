@@ -13,7 +13,7 @@ function turtleDigDown(numTiles)
 end
 
 function turtleComeUp(numTiles)
-  for i=0,numTiles do 
+  for i=1,numTiles do 
     if(turtle.detectUp() == true) then
       turtle.digUp()
       turtle.up()
