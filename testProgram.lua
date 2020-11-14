@@ -2,14 +2,18 @@
 local height = 5
 if #arg > 0 then height = tonumber(arg[1]) end
 function turtleDigDown(numTiles)
+  count = 0
   for i=0,numTiles do 
     if(turtle.detectDown() == true) then
       turtle.digDown()
-      turtle.down()
-    else
-      turtle.down()
+    end
+    is_true = turtle.down()
+    if(is_true == true) then
+      count = count+1
     end
   end
+
+return count
 end
 
 function turtleComeUp(numTiles)
@@ -35,13 +39,13 @@ function dropNonImportant()
             print ("Was found")
           else
             turtle.select(i)
-            turtle.drop(i)
+            turtle.drop()
           end
       end
 
   end
 end
 
-turtleDigDown(height)
-turtleComeUp(height)
+numTilesDown = turtleDigDown(height)
+turtleComeUp(numTilesDown)
 dropNonImportant()
