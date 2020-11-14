@@ -33,18 +33,23 @@ end
 
 
 function dropNonImportant()
+  count = 0
   for i=1,16 do
       tempItem = turtle.getItemDetail(i)
       
       if tempItem ~= nil then
-          tempName = tempItem["name"]
-          if string.find(tempName, "ore") or string.find(tempName, "diamond") then
-            print (tempName)
-            print ("Was found")
-          else
-            turtle.select(i)
-            turtle.drop()
-          end
+        if count == 0 then
+          turtle.select(i)
+          turtle.placeDown()
+        end
+        tempName = tempItem["name"]
+        if string.find(tempName, "ore") or string.find(tempName, "diamond") then
+          print (tempName)
+          print ("Was found")
+        else
+          turtle.select(i)
+          turtle.drop()
+        end
       end
 
   end
