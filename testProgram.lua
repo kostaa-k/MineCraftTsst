@@ -1,5 +1,5 @@
 
-local numTiles = 5
+local height = 5
 function turtleDigDown(numTiles)
   for i=0,numTiles do 
     if(turtle.detectDown() == true) then
@@ -20,5 +20,5 @@ function turtleComeUp(numTiles)
   end
 end
 
-turtleDigDown()
-turtleDigUp()
+turtleDigDown(height)
+turtleDigUp(height)
