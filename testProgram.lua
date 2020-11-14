@@ -1,6 +1,10 @@
 
 local height = 5
 if #arg > 0 then height = tonumber(arg[1]) end
+
+print("Digging down:")
+print(height)
+
 function turtleDigDown(numTiles)
   count = 0
   for i=0,numTiles do 
