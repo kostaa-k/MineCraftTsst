@@ -34,7 +34,7 @@ function dropNonImportant()
       
       if tempItem ~= nil then
           tempName = tempItem["name"]
-          if string.find(tempName, "ore") then
+          if string.find(tempName, "ore") or string.find(tempName, "diamond") then
             print (tempName)
             print ("Was found")
           else
@@ -47,5 +47,5 @@ function dropNonImportant()
 end
 
 numTilesDown = turtleDigDown(height)
-turtleComeUp(numTilesDown)
+turtleComeUp(numTilesDown-1)
 dropNonImportant()
