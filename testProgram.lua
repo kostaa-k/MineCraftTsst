@@ -23,5 +23,21 @@ function turtleComeUp(numTiles)
   end
 end
 
+
+function dropNonImportant()
+  for i=0,16 do
+      tempName = turtle.getItemDetail(i)["name"]
+
+      if string.find(tempName, "ore") then
+        print (tempName)
+        print ("Was found")
+      else
+        turtle.select(i)
+        turtle.drop(i)
+      end
+  end
+
+
 turtleDigDown(height)
 turtleComeUp(height)
+dropNonImportant()
