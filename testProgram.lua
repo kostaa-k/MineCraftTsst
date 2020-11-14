@@ -1,4 +1,5 @@
 
+local numTiles = 5
 function turtleDigDown(numTiles)
   for i=0,numTiles do 
     if(turtle.detectDown() == true) then
@@ -6,6 +7,8 @@ function turtleDigDown(numTiles)
     else
       turtle.down()
     end
+  end
+end
 
 function turtleComeUp(numTiles)
   for i=0,numTiles do 
@@ -14,7 +17,8 @@ function turtleComeUp(numTiles)
     else
       turtle.up()
     end
-
+  end
+end
 
 turtleDigDown()
 turtleDigUp()
