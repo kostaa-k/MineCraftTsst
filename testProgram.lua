@@ -98,7 +98,7 @@ function digSquare(diameter)
     turtle.turnRight()
     digInLine(newRadius-1)
     turtle.turnRight()
-    turtle.digInLine(1)
+    digInLine(1)
 
     newRadius = newRadius-2
       
