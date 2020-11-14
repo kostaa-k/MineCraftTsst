@@ -1,9 +1,19 @@
 
 local height = 5
-if #arg > 0 then height = tonumber(arg[1]) end
+if #arg > 0 then 
+  height = tonumber(arg[1]) 
+end
+
+local squareSize = 3
+if #arg > 1 then 
+  squareSize = tonumber(arg[2]) 
+end
 
 print("Digging down:")
 print(height)
+
+print("squareSize at Bottom")
+print (squareSize)
 
 function turtleDigDown(numTiles)
   count = 0
@@ -55,6 +65,52 @@ function dropNonImportant()
   end
 end
 
+
+function getToStartSquare(radius)
+
+  for i=1,radius do
+      turtle.dig()
+      turtle.forward()
+  end
+
+  turtle.turnRight()
+  for i=1,radius do
+    turtle.dig()
+    turtle.forward()
+  end
+  turtle.turnRight()
+end
+
+function digSquare(diameter)
+
+  newRadius = diameter-1
+  while(newRadius >= 2) do
+    digInLine(newRadius)
+    turtle.turnRight()
+    digInLine(newRadius)
+    turtle.turnRight()
+    digInLine(newRadius)
+    turtle.turnRight()
+    digInLine(newRadius-1)
+    turtle.turnRight()
+    turtle.digInLine(1)
+
+    newRadius = newRadius-2
+      
+  end
+end
+
+function digInLine(numberOfTiles)
+  for i=1,(numberOfTiles) do
+    turtle.dig()
+    turtle.forward()
+  end
+end
+
+
+
 numTilesDown = turtleDigDown(height)
+digSquare(squareSize//2)
 turtleComeUp(numTilesDown-1)
 dropNonImportant()
+
