@@ -13,7 +13,7 @@ function turtleDigDown(numTiles)
 end
 
 function turtleComeUp(numTiles)
-  for i=1,numTiles do 
+  for i=0,numTiles do 
     if(turtle.detectUp() == true) then
       turtle.digUp()
       turtle.up()
@@ -25,7 +25,7 @@ end
 
 
 function dropNonImportant()
-  for i=0,16 do
+  for i=1,16 do
       tempName = turtle.getItemDetail(i)["name"]
 
       if string.find(tempName, "ore") then
