@@ -67,6 +67,8 @@ end
 
 
 function getToStartSquare(radius)
+  print("Radius: ")
+  print(radius)
 
   for i=1,radius do
       turtle.dig()
@@ -82,6 +84,9 @@ function getToStartSquare(radius)
 end
 
 function digSquare(diameter)
+
+  print("Diameter: ")
+  print(diameter)
 
   newRadius = diameter-1
   while(newRadius >= 2) do
@@ -112,11 +117,12 @@ end
 numTilesDown = turtleDigDown(height)
 theDiameter = squareSize
 if(squareSize%2 == 0) then
-  theDiameter = (squareSize/2)+1
+  theDiameter = (squareSize/2)
 else
   theDiameter = (squareSize-1)/2
 end
-digSquare(theDiameter)
+getToStartSquare(theDiameter)
+digSquare(squareSize)
 turtleComeUp(numTilesDown-1)
 dropNonImportant()
 
