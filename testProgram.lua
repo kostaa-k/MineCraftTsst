@@ -110,7 +110,13 @@ end
 
 
 numTilesDown = turtleDigDown(height)
-digSquare(squareSize//2)
+theDiameter = squareSize
+if(squareSize%2 == 0) then
+  theDiameter = (squareSize/2)+1
+else
+  theDiameter = (squareSize-1)/2
+end
+digSquare(theDiameter)
 turtleComeUp(numTilesDown-1)
 dropNonImportant()
 
