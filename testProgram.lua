@@ -36,7 +36,7 @@ function dropNonImportant()
         turtle.drop(i)
       end
   end
-
+end
 
 turtleDigDown(height)
 turtleComeUp(height)
