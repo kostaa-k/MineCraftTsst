@@ -9,6 +9,11 @@ if #arg > 1 then
   squareSize = tonumber(arg[2]) 
 end
 
+local num_layers = 1
+if #arg > 2 then 
+  num_layers = tonumber(arg[3]) 
+end
+
 print("Digging down:")
 print(height)
 
@@ -17,7 +22,7 @@ print (squareSize)
 
 function turtleDigDown(numTiles)
   count = 0
-  for i=0,numTiles do 
+  for i=1,numTiles do 
     if(turtle.detectDown() == true) then
       turtle.digDown()
     end
@@ -31,7 +36,7 @@ return count
 end
 
 function turtleComeUp(numTiles)
-  for i=0,numTiles do 
+  for i=1,numTiles do 
     if(turtle.detectUp() == true) then
       turtle.digUp()
       turtle.up()
@@ -116,13 +121,21 @@ end
 
 numTilesDown = turtleDigDown(height)
 theDiameter = squareSize
+
+
 if(squareSize%2 == 0) then
   theDiameter = (squareSize/2)
 else
   theDiameter = (squareSize-1)/2
 end
-getToStartSquare(theDiameter)
-digSquare(squareSize)
-turtleComeUp(numTilesDown-1)
+
+for i=1,num_layers do
+  getToStartSquare(theDiameter)
+  digSquare(squareSize)
+  turtleComeUp(1)
+end
+
+ 
+turtleComeUp(numTilesDown-num_layers)
 dropNonImportant()
 
