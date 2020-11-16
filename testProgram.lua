@@ -62,8 +62,7 @@ function dropNonImportant()
         end
         tempName = tempItem["name"]
         if string.find(tempName, "ore") or string.find(tempName, "diamond") then
-          print (tempName)
-          print ("Was found")
+          count = count+1
         else
           turtle.select(i)
           turtle.drop()
@@ -120,7 +119,15 @@ function digInLine(numberOfTiles)
         print("COULDNT DIG this way!")
       end
     end
-    turtle.forward()
+    couldMove = turtle.forward()
+    if(couldMove == false) then
+      while(couldMove == false) do
+          turtle.attack()
+          print("Attacked")
+          turtle.dig()
+          couldMove = turtle.forward()
+      end
+    end
   end
 end
 
@@ -166,7 +173,7 @@ for i=1,num_layers do
   turtleComeUp(1)
 end
 
-print("Coming up this many times")
+print("Coming up:")
 print(numTilesDown-num_layers)
 turtleComeUp(numTilesDown-num_layers)
 dropNonImportant()
