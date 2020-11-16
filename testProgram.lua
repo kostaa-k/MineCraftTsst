@@ -130,12 +130,14 @@ else
 end
 
 for i=1,num_layers do
+  print("Making square")
   getToStartSquare(theDiameter)
   digSquare(squareSize)
   turtleComeUp(1)
 end
 
- 
+print("Coming up this many times")
+print(numTilesDown-num_layers)
 turtleComeUp(numTilesDown-num_layers)
 dropNonImportant()
 
