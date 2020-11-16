@@ -179,5 +179,5 @@ end
 print("Coming up:")
 print(numTilesDown-num_layers)
 turtleComeUp(numTilesDown-num_layers)
-dropNonImportant(0)
+dropNonImportant(1)
 
