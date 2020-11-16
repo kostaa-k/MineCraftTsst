@@ -125,6 +125,27 @@ function digInLine(numberOfTiles)
 end
 
 
+function automaticRefuel()
+  for i=1,16 do
+    tempItem = turtle.getItemDetail(i)
+
+    if tempItem ~= nil then
+      if count == 0 then
+        turtle.select(i)
+        turtle.placeDown()
+      end
+      tempName = tempItem["name"]
+      if string.find(tempName, "coal") then
+        print (tempName)
+        print ("fuel Was found")
+        turtle.refuel(100)
+      end
+    end
+
+  end
+
+end
+
 
 numTilesDown = turtleDigDown(height)
 theDiameter = squareSize
@@ -138,6 +159,7 @@ end
 
 for i=1,num_layers do
   --print("Making square")
+  automaticRefuel()
   getToStartSquare(theDiameter)
   digSquare(squareSize)
   turtleComeUp(1)
