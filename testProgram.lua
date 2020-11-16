@@ -51,6 +51,8 @@ end
 
 
 function dropNonImportant()
+
+  importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone"}
   count = 0
   for i=1,16 do
       tempItem = turtle.getItemDetail(i)
@@ -60,8 +62,8 @@ function dropNonImportant()
           turtle.select(i)
           turtle.placeDown()
         end
-        tempName = tempItem["name"]
-        if string.find(tempName, "ore") or string.find(tempName, "diamond") then
+        tempName = string.lower(tempItem["name"])
+        if (isInList(importantWords, tempName) == true) then
           count = count+1
         else
           turtle.select(i)
@@ -71,6 +73,17 @@ function dropNonImportant()
 
   end
 end
+
+function isInList(theList, theWord)
+  for i in pairs(theList) do
+    if string.find(theWord, theList[i]) then
+      return true
+    end
+  end
+
+  return false
+end
+
 
 
 function getToStartSquare(radius)
