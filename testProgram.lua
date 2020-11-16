@@ -114,9 +114,11 @@ end
 
 function digInLine(numberOfTiles)
   for i=1,(numberOfTiles) do
-    couldDig = turtle.dig()
-    if(couldDig == false) then
-      print("COULDNT DIG this way!")
+    if(turtle.detect() == true) then
+      couldDig = turtle.dig()
+      if(couldDig == false) then
+        print("COULDNT DIG this way!")
+      end
     end
     turtle.forward()
   end
