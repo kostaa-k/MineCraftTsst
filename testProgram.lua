@@ -1,17 +1,17 @@
 
 local height = 5
 if #arg > 0 then 
-  height = tonumber(arg[1]) 
+  height = tonumber(arg[1]
 end
 
 local squareSize = 3
 if #arg > 1 then 
-  squareSize = tonumber(arg[2]) 
+  squareSize = tonumber(arg[2]
 end
 
 local num_layers = 1
 if #arg > 2 then 
-  num_layers = tonumber(arg[3]) 
+  num_layers = tonumber(arg[3]
 end
 
 print("Digging down:")
@@ -24,7 +24,10 @@ function turtleDigDown(numTiles)
   count = 0
   for i=1,numTiles do 
     if(turtle.detectDown() == true) then
-      turtle.digDown()
+      couldDig = turtle.digDown()
+      if(couldDig == false) then
+        print("COULDNT DIG DOWN!")
+      end
     end
     is_true = turtle.down()
     if(is_true == true) then
@@ -106,13 +109,15 @@ function digSquare(diameter)
     digInLine(1)
 
     newRadius = newRadius-2
-      
   end
 end
 
 function digInLine(numberOfTiles)
   for i=1,(numberOfTiles) do
-    turtle.dig()
+    couldDig = turtle.dig()
+    if(couldDig == false) then
+      print("COULDNT DIG this way!")
+    end
     turtle.forward()
   end
 end
@@ -130,7 +135,7 @@ else
 end
 
 for i=1,num_layers do
-  print("Making square")
+  --print("Making square")
   getToStartSquare(theDiameter)
   digSquare(squareSize)
   turtleComeUp(1)
