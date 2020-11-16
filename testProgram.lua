@@ -74,8 +74,6 @@ end
 
 
 function getToStartSquare(radius)
-  print("Radius: ")
-  print(radius)
 
   for i=1,radius do
       turtle.dig()
@@ -91,9 +89,6 @@ function getToStartSquare(radius)
 end
 
 function digSquare(diameter)
-
-  print("Diameter: ")
-  print(diameter)
 
   newRadius = diameter-1
   while(newRadius >= 2) do
@@ -122,7 +117,7 @@ function digInLine(numberOfTiles)
     couldMove = turtle.forward()
     if(couldMove == false) then
       while(couldMove == false) do
-          turtle.attack()
+          didAttack = turtle.attack()
           print("Attacked")
           turtle.dig()
           couldMove = turtle.forward()
