@@ -1,17 +1,17 @@
 
 local height = 5
 if #arg > 0 then 
-  height = tonumber(arg[1]
+  height = tonumber(arg[1])
 end
 
 local squareSize = 3
 if #arg > 1 then 
-  squareSize = tonumber(arg[2]
+  squareSize = tonumber(arg[2])
 end
 
 local num_layers = 1
 if #arg > 2 then 
-  num_layers = tonumber(arg[3]
+  num_layers = tonumber(arg[3])
 end
 
 print("Digging down:")
