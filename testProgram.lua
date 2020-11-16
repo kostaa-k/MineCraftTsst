@@ -136,9 +136,10 @@ function automaticRefuel()
       end
       tempName = tempItem["name"]
       if string.find(tempName, "coal") then
-        print (tempName)
-        print ("fuel Was found")
-        turtle.refuel(100)
+        didRefuel = turtle.refuel(100)
+        if(didRefuel == true) then
+          print("Refueled")
+        end
       end
     end
 
