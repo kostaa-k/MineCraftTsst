@@ -176,6 +176,7 @@ end
 for i=1,num_layers do
   --print("Making square")
   automaticRefuel()
+  dropNonImportant()
   getToStartSquare(theDiameter)
   digSquare(squareSize)
   turtleComeUp(1)
