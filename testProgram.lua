@@ -50,10 +50,9 @@ function turtleComeUp(numTiles)
 end
 
 
-function dropNonImportant()
+function dropNonImportant(count)
 
   importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone"}
-  count = 0
   for i=1,16 do
       tempItem = turtle.getItemDetail(i)
       
@@ -176,7 +175,7 @@ end
 for i=1,num_layers do
   --print("Making square")
   automaticRefuel()
-  dropNonImportant()
+  dropNonImportant(1)
   getToStartSquare(theDiameter)
   digSquare(squareSize)
   turtleComeUp(1)
@@ -185,5 +184,5 @@ end
 print("Coming up:")
 print(numTilesDown-num_layers)
 turtleComeUp(numTilesDown-num_layers)
-dropNonImportant()
+dropNonImportant(0)
 
