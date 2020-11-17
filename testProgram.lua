@@ -52,7 +52,7 @@ end
 
 function dropNonImportant(count)
 
-  importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone"}
+  importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium"}
   for i=1,16 do
       tempItem = turtle.getItemDetail(i)
       
@@ -143,11 +143,9 @@ function automaticRefuel()
         turtle.placeDown()
       end
       tempName = tempItem["name"]
-      if string.find(tempName, "coal") then
-        didRefuel = turtle.refuel(100)
-        if(didRefuel == true) then
-          print("Refueled")
-        end
+      didRefuel = turtle.refuel(100)
+      if(didRefuel == true) then
+        print("Refueled")
       end
     end
 
