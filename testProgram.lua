@@ -138,10 +138,6 @@ function automaticRefuel()
     tempItem = turtle.getItemDetail(i)
 
     if tempItem ~= nil then
-      if count == 0 then
-        turtle.select(i)
-        turtle.placeDown()
-      end
       tempName = tempItem["name"]
       didRefuel = turtle.refuel(100)
       if(didRefuel == true) then
