@@ -135,14 +135,10 @@ end
 
 function automaticRefuel()
   for i=1,16 do
-    tempItem = turtle.getItemDetail(i)
-
-    if tempItem ~= nil then
-      tempName = tempItem["name"]
-      didRefuel = turtle.refuel(100)
-      if(didRefuel == true) then
-        print("Refueled")
-      end
+    turtle.select(i)
+    didRefuel = turtle.refuel(100)
+    if(didRefuel == true) then
+      print("Refueled")
     end
 
   end
