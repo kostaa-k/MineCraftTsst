@@ -52,7 +52,7 @@ end
 
 function dropNonImportant(count)
 
-  importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium"}
+  importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium", "turtle"}
   for i=1,16 do
       tempItem = turtle.getItemDetail(i)
       
@@ -114,6 +114,7 @@ end
 
 function digInLine(numberOfTiles)
   for i=1,(numberOfTiles) do
+    dropNonImportant(1)
     if(turtle.detect() == true) then
       couldDig = turtle.dig()
       if(couldDig == false) then
