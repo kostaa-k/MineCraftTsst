@@ -52,7 +52,9 @@ function digInLine(numberOfTiles)
     for i=1,(numberOfTiles) do
       if(turtle.detect() == true) then
         
-        local slotToFill = selectCorrectSlot()
+        if(turtle.compare() == false) then
+            local slotToFill = selectCorrectSlot()
+        end
         local couldDig = turtle.dig()
         if(couldDig == false) then
           print("COULDNT DIG this way!")
@@ -74,7 +76,7 @@ end
 function selectCorrectSlot()
     for i=1, 16 do
         turtle.select(i)
-        local isSame = turtle.compare(i)
+        local isSame = turtle.compare()
         if(isSame == true) then
             return i
         end
