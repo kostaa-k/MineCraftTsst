@@ -209,7 +209,7 @@ end
 
 numTilesDown = turtleDigDown(height)
 
-theMoves = digRandomly(tilesToDig)
+theMoves = digRandomly(tilesToDig, dropEvery)
 theReverseMoves = createReverseList(theMoves)
 
 traverseBackWards(theReverseMoves)
