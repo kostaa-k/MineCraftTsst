@@ -134,6 +134,7 @@ function digInLine(numberOfTiles)
 end
 
 
+
 function automaticRefuel()
   for i=1,16 do
     turtle.select(i)
