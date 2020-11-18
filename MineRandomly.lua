@@ -22,7 +22,7 @@ if(totalFuelPredicted >= beginFuelLevel-1000) then
   do return end
 end
 
-if(turtle.inspect() == nil) then
+if(turtle.inspect() == false) then
   print("not facing a wall")
   do return end
 end
@@ -67,7 +67,7 @@ function digInLine(numberOfTiles)
       if(turtle.detect() == true) then
 
         local inFront, theMetadata = turtle.inspect()
-        if(inFront ~= nil) then
+        if(inFront == true) then
           if(string.find(theMetadata["name"], "turtle")) then
             turtle.select(1)
             turtle.drop()
