@@ -54,6 +54,9 @@ function digRandomly()
             numTurns = numTurns+1
         else
             canGo = true
+            for i=0, (numTurns-1) do
+                table.insert(listOfMoves, "R")
+            end
             numTurns = 4
         end
     end
@@ -64,9 +67,6 @@ function digRandomly()
             table.insert(listOfMoves, "S")
         end
     else
-        for i=0, numTurns do
-            table.insert(listOfMoves, "R")
-        end
         digInLine(1)
         table.insert(listOfMoves, "S")
     end
