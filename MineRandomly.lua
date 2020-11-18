@@ -22,6 +22,11 @@ if(totalFuelPredicted >= beginFuelLevel-1000) then
   do return end
 end
 
+if(turtle.inspect() == nil) then
+  print("not facing a wall")
+  do return end
+end
+
 function turtleDigDown(numTiles)
     local count = 0
     for i=1,numTiles do 
