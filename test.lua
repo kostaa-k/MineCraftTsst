@@ -106,6 +106,8 @@ function createReverseList(forwardMoves)
 end
 
 function traverseBackWards(movesToMake)
+    turtle.turnRight()
+    turtle.turnRight()
 
     for i =0, #movesToMake do
         local value = movesToMake[i]
