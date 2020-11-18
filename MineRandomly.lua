@@ -43,7 +43,7 @@ function turtleDigDown(numTiles)
               couldMove = turtle.down()
               numTimesTried = numTimesTried+1
           end
-          if(couldMove == false) then
+          if(couldMove == false and numTimesTried >= 20) then
             count = count-1
           end
         end
