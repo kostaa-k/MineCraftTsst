@@ -111,11 +111,9 @@ function digRandomly(maxTiles)
         end
 
         if(canGo == false) then
-            while(turtle.detect() == false and numOfMoves < maxTiles) do
-                digInLine(1)
-                numOfMoves = numOfMoves+1
-                table.insert(listOfMoves, "S")
-            end
+            digInLine(1)
+            numOfMoves = numOfMoves+1
+            table.insert(listOfMoves, "S")
         else
             digInLine(1)
             table.insert(listOfMoves, "S")
