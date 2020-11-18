@@ -95,7 +95,7 @@ function createReverseList(forwardMoves)
 end
 
 theMoves = digRandomly(lineLength)
-theReverseMoves = createReverseList()
+theReverseMoves = createReverseList(theMoves)
 
 for i,v in ipairs(theMoves) do print(i,v) end
 print("Reverse moves:")
