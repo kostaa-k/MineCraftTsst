@@ -14,6 +14,8 @@ if #arg > 2 then
     dropEvery = tonumber(arg[3])
 end
 
+NumTimesWentUp = 0
+
 local totalFuelPredicted = (height*2)+(tilesToDig*2)
 local beginFuelLevel = tonumber(turtle.getFuelLevel())
 
@@ -31,15 +33,19 @@ function turtleDigDown(numTiles)
     local count = 0
     for i=1,numTiles do 
       if(turtle.detectDown() == true) then
-        local couldDig = turtle.digDown()
-        if(couldDig == false) then
-          print("COULDNT DIG DOWN!")
+        turtle.digDown()
+        local couldMove = turtle.down()
+        if(couldMove == false) then
+          while(couldMove == false) do
+              local didAttack = turtle.attackDown()
+              turtle.digDown()
+              couldMove = turtle.down()
+          end
         end
+      else
+        turtle.up()
       end
-      local is_true = turtle.down()
-      if(is_true == true) then
-        count = count+1
-      end
+      count = count+1
     end
   
     return count
@@ -52,7 +58,14 @@ function turtleComeUp(numTiles)
     for i=1,numTiles do 
       if(turtle.detectUp() == true) then
         turtle.digUp()
-        turtle.up()
+        local couldMove = turtle.up()
+        if(couldMove == false) then
+          while(couldMove == false) do
+              local didAttack = turtle.attackUp()
+              turtle.digUp()
+              couldMove = turtle.up()
+          end
+        end
       else
         turtle.up()
       end
@@ -69,8 +82,9 @@ function digInLine(numberOfTiles)
         local inFront, theMetadata = turtle.inspect()
         if(inFront == true) then
           if(string.find(theMetadata["name"], "turtle")) then
-            turtle.select(1)
-            turtle.drop()
+            local goingUp = math.random(0, 3)
+            turtleComeUp(goingUp)
+            NumTimesWentUp = NumTimesWentUp+goingUp
           end
         end
         
@@ -233,4 +247,9 @@ theReverseMoves = createReverseList(theMoves)
 
 traverseBackWards(theReverseMoves)
 
-turtleComeUp(numTilesDown)
+local howManyGoingUp = numTilesDown-NumTimesWentUp
+if(howManyGoingUp > 0) then
+  turtleComeUp(numTilesDown-NumTimesWentUp)
+elseif(howManyGoingUp < 0 ) then
+  turtleComeUp(NumTimesWentUp-numTilesDown)
+end
