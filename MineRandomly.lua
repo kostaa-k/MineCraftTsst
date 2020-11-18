@@ -69,7 +69,8 @@ function digInLine(numberOfTiles)
         local inFront, theMetadata = turtle.inspect()
         if(inFront ~= nil) then
           if(string.find(theMetadata["name"], "turtle")) then
-            dropNonImportant()
+            turtle.select(1)
+            turtle.drop()
           end
         end
         
@@ -104,6 +105,7 @@ function selectCorrectSlot()
         end
     end
 
+    turtle.select(1)
     return 0
 end
 
