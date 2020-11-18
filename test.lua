@@ -94,6 +94,8 @@ function createReverseList(forwardMoves)
         local value = forwardMoves[i]
         if(value == "R") then
             table.insert(reverseMoves, "L")
+        elseif(value == "L") then
+            table.insert(reverseMoves, "R")
         else
             table.insert(reverseMoves, value)
         end
@@ -109,6 +111,8 @@ function traverseBackWards(movesToMake)
         local value = movesToMake[i]
         if(value == "L") then
             turtle.turnLeft()
+        elseif(value == "R") then
+            turtle.turnRight()
         else
             digInLine(1)
         end
