@@ -4,6 +4,8 @@ if #arg > 0 then
     lineLength = tonumber(arg[1])
 end
 
+local dropEvery
+
 
 function digInLine(numberOfTiles)
     for i=1,(numberOfTiles) do
@@ -20,6 +22,7 @@ function digInLine(numberOfTiles)
         while(couldMove == false) do
             didAttack = turtle.attack()
             print("Attacked")
+            slotToFill = selectCorrectSlot()
             turtle.dig()
             couldMove = turtle.forward()
         end
@@ -39,4 +42,36 @@ function selectCorrectSlot()
     return 0
 end
 
-digInLine(lineLength)
+function digRandomly()
+    
+    listOfMoves = {}
+    
+    numTurns = 0
+    canGo = false
+    while(numTurns < 4) do
+        if(turtle.detect() == false) then
+            turtle.turnRight()
+            numTurns = numTurns+1
+        else
+            canGo = true
+            numTurns = 4
+        end
+    end
+
+    if(canGo == false) then
+        while(turtle.detect() == false) do
+            digInLine(1)
+            table.insert(listOfMoves, "S")
+        end
+    else
+        for i=0, numTurns do
+            table.insert(listOfMoves, "R")
+        end
+        digInLine(1)
+        table.insert(listOfMoves, "S")
+    end
+
+    print(listOfMoves)
+end
+
+digRandomly()
