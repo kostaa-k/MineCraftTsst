@@ -110,7 +110,7 @@ function traverseBackWards(movesToMake)
         if(value == "L") then
             turtle.turnLeft()
         else
-            digInLine()
+            digInLine(1)
         end
     end
 
