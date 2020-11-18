@@ -9,6 +9,11 @@ if #arg > 1 then
     tilesToDig = tonumber(arg[2])
 end
 
+local dropEvery = 20
+if #arg > 2 then 
+    dropEvery = tonumber(arg[3])
+end
+
 
 
 
@@ -85,13 +90,49 @@ function selectCorrectSlot()
     return 0
 end
 
-function digRandomly(maxTiles)
+function dropNonImportant(count)
+
+    importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium", "turtle"}
+    for i=1,16 do
+        tempItem = turtle.getItemDetail(i)
+        
+        if tempItem ~= nil then
+          if count == 0 then
+            turtle.select(i)
+            turtle.placeDown()
+          end
+          tempName = string.lower(tempItem["name"])
+          if (isInList(importantWords, tempName) == true) then
+            count = count+1
+          else
+            turtle.select(i)
+            turtle.drop()
+          end
+        end
+  
+    end
+  end
+  
+  function isInList(theList, theWord)
+    for i in pairs(theList) do
+      if string.find(theWord, theList[i]) then
+        return true
+      end
+    end
+  
+    return false
+  end
+
+function digRandomly(maxTiles, toDropEvery)
     
     local listOfMoves = {}
     
     local numOfMoves = 0
 
     while(numOfMoves < maxTiles) do 
+        if(math.fmod(numOfMoves, toDropEvery) == 0) then
+            dropNonImportant(1)
+        end
         numTurns = 0
         canGo = false
         while(numTurns < 4) do
