@@ -14,9 +14,12 @@ if #arg > 2 then
     dropEvery = tonumber(arg[3])
 end
 
+local totalFuelPredicted = (height*2)+(tilesToDig*2)
+local beginFuelLevel = tonumber(turtle.getFuelLevel())
 
-
-
+if(totalFuelPredicted >= beginFuelLevel-1000) then
+  do return end
+end
 
 function turtleDigDown(numTiles)
     local count = 0
