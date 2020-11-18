@@ -1,10 +1,51 @@
 
-local lineLength = 5
+local height = 5
 if #arg > 0 then 
-    lineLength = tonumber(arg[1])
+  height = tonumber(arg[1])
 end
 
-local dropEvery
+local tilesToDig = 3
+if #arg > 1 then 
+    tilesToDig = tonumber(arg[2])
+end
+
+
+
+
+
+function turtleDigDown(numTiles)
+    local count = 0
+    for i=1,numTiles do 
+      if(turtle.detectDown() == true) then
+        local couldDig = turtle.digDown()
+        if(couldDig == false) then
+          print("COULDNT DIG DOWN!")
+        end
+      end
+      local is_true = turtle.down()
+      if(is_true == true) then
+        count = count+1
+      end
+    end
+  
+    return count
+end
+
+
+
+
+function turtleComeUp(numTiles)
+    for i=1,numTiles do 
+      if(turtle.detectUp() == true) then
+        turtle.digUp()
+        turtle.up()
+      else
+        turtle.up()
+      end
+    end
+end
+
+
 
 
 function digInLine(numberOfTiles)
@@ -120,13 +161,16 @@ function traverseBackWards(movesToMake)
         end
     end
 
+    turtle.turnRight()
+    turtle.turnRight()
+
 end
 
-theMoves = digRandomly(lineLength)
+numTilesDown = turtleDigDown(height)
+
+theMoves = digRandomly(tilesToDig)
 theReverseMoves = createReverseList(theMoves)
 
-for i,v in ipairs(theMoves) do print(i,v) end
-print("Reverse moves:")
-for i,v in ipairs(theReverseMoves) do print(i,v) end
-
 traverseBackWards(theReverseMoves)
+
+turtleComeUp(numTilesDown)

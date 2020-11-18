@@ -35,7 +35,7 @@ function turtleDigDown(numTiles)
     end
   end
 
-return count
+  return count
 end
 
 function turtleComeUp(numTiles)
