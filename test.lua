@@ -57,9 +57,14 @@ function digRandomly(maxTiles)
                 numTurns = numTurns+1
             else
                 canGo = true
-                for i=0, (numTurns-1) do
+                if(numTurns == 1) then
                     table.insert(listOfMoves, "R")
+                else if (numTurns == 3) then
+                    table.insert(listOfMoves, "L")
                 end
+                
+                end
+
                 numTurns = 4
             end
         end
@@ -98,9 +103,24 @@ function createReverseList(forwardMoves)
 
 end
 
+function traverseBackWards(movesToMake)
+
+    for i =0, #forwardMoves do
+        local value = movesToMake[i]
+        if(value == "L") then
+            turtle.turnLeft()
+        else
+            digInLine()
+        end
+    end
+
+end
+
 theMoves = digRandomly(lineLength)
 theReverseMoves = createReverseList(theMoves)
 
 for i,v in ipairs(theMoves) do print(i,v) end
 print("Reverse moves:")
 for i,v in ipairs(theReverseMoves) do print(i,v) end
+
+traverseBackWards(theReverseMoves)
