@@ -14,5 +14,6 @@ if #arg > 2 then
 end
 
 for i=1, 10 do
-    shell.run("MineRandomly", height, tilesToDig, dropEvery)
+    local numToGo = math.random(35, height)
+    shell.run("MineRandomly", numToGo, tilesToDig, dropEvery)
 end
