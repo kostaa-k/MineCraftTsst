@@ -251,5 +251,5 @@ local howManyGoingUp = numTilesDown-NumTimesWentUp
 if(howManyGoingUp > 0) then
   turtleComeUp(numTilesDown-NumTimesWentUp)
 elseif(howManyGoingUp < 0 ) then
-  turtleComeUp(NumTimesWentUp-numTilesDown)
+  turtleDigDown(NumTimesWentUp-numTilesDown)
 end
