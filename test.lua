@@ -105,7 +105,7 @@ end
 
 function traverseBackWards(movesToMake)
 
-    for i =0, #forwardMoves do
+    for i =0, #movesToMake do
         local value = movesToMake[i]
         if(value == "L") then
             turtle.turnLeft()
