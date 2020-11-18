@@ -43,7 +43,7 @@ function turtleDigDown(numTiles)
           end
         end
       else
-        turtle.up()
+        turtle.down()
       end
       count = count+1
     end
