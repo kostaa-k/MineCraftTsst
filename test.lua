@@ -71,7 +71,7 @@ function digRandomly()
         table.insert(listOfMoves, "S")
     end
 
-    print(listOfMoves)
+    for i,v in ipairs(listOfMoves) do print(i,v) end
 end
 
 digRandomly()
