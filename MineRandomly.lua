@@ -66,9 +66,9 @@ function digInLine(numberOfTiles)
     for i=1,(numberOfTiles) do
       if(turtle.detect() == true) then
 
-        local inFront = turtle.inspect()
+        local inFront, theMetadata = turtle.inspect()
         if(inFront ~= nil) then
-          if(string.find(inFront["name"], "turtle")) then
+          if(string.find(theMetadata["name"], "turtle")) then
             dropNonImportant()
           end
         end
