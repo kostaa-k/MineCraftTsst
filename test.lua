@@ -11,18 +11,18 @@ function digInLine(numberOfTiles)
     for i=1,(numberOfTiles) do
       if(turtle.detect() == true) then
         
-        slotToFill = selectCorrectSlot()
-        couldDig = turtle.dig()
+        local slotToFill = selectCorrectSlot()
+        local couldDig = turtle.dig()
         if(couldDig == false) then
           print("COULDNT DIG this way!")
         end
       end
-      couldMove = turtle.forward()
+      local couldMove = turtle.forward()
       if(couldMove == false) then
         while(couldMove == false) do
-            didAttack = turtle.attack()
+            local didAttack = turtle.attack()
             print("Attacked")
-            slotToFill = selectCorrectSlot()
+            local slotToFill = selectCorrectSlot()
             turtle.dig()
             couldMove = turtle.forward()
         end
@@ -33,7 +33,7 @@ end
 function selectCorrectSlot()
     for i=1, 16 do
         turtle.select(i)
-        isSame = turtle.compare(i)
+        local isSame = turtle.compare(i)
         if(isSame == true) then
             return i
         end
@@ -42,36 +42,60 @@ function selectCorrectSlot()
     return 0
 end
 
-function digRandomly()
+function digRandomly(maxTiles)
     
-    listOfMoves = {}
+    local listOfMoves = {}
     
-    numTurns = 0
-    canGo = false
-    while(numTurns < 4) do
-        if(turtle.detect() == false) then
-            turtle.turnRight()
-            numTurns = numTurns+1
-        else
-            canGo = true
-            for i=0, (numTurns-1) do
-                table.insert(listOfMoves, "R")
-            end
-            numTurns = 4
-        end
-    end
+    local numOfMoves = 0
 
-    if(canGo == false) then
-        while(turtle.detect() == false) do
+    while(numOfMoves < maxTiles) do 
+        numTurns = 0
+        canGo = false
+        while(numTurns < 4) do
+            if(turtle.detect() == false) then
+                turtle.turnRight()
+                numTurns = numTurns+1
+            else
+                canGo = true
+                for i=0, (numTurns-1) do
+                    table.insert(listOfMoves, "R")
+                end
+                numTurns = 4
+            end
+        end
+
+        if(canGo == false) then
+            while(turtle.detect() == false and numOfMoves < maxTiles) do
+                digInLine(1)
+                numOfMoves = numOfMoves+1
+                table.insert(listOfMoves, "S")
+            end
+        else
             digInLine(1)
             table.insert(listOfMoves, "S")
         end
-    else
-        digInLine(1)
-        table.insert(listOfMoves, "S")
-    end
 
-    for i,v in ipairs(listOfMoves) do print(i,v) end
+    end
+    return listOfMoves
 end
 
-digRandomly()
+
+function createReverseList(forwardMoves)
+
+    local reverseMoves = {}
+
+    for i = #forwardMoves, 1, -1 do
+        local value = forwardMoves[i]
+        table.insert(reverseMoves, value)
+    end
+
+    return reverseMoves
+
+end
+
+theMoves = digRandomly(lineLength)
+theReverseMoves = createReverseList()
+
+for i,v in ipairs(theMoves) do print(i,v) end
+print("Reverse moves:")
+for i,v in ipairs(theReverseMoves) do print(i,v) end
