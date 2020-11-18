@@ -144,7 +144,7 @@ function dropNonImportant(count)
             count = count+1
           else
             turtle.select(i)
-            turtle.drop()
+            turtle.dropDown()
           end
         end
   
@@ -266,6 +266,7 @@ elseif(howManyGoingUp < 0 ) then
   turtleDigDown(NumTimesWentUp-numTilesDown)
 end
 
+dropNonImportant(1)
 dropInChestUp()
 
 if(turtle.detect() == false) then
