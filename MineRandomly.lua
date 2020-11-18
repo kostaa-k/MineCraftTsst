@@ -267,3 +267,8 @@ elseif(howManyGoingUp < 0 ) then
 end
 
 dropInChestUp()
+
+if(turtle.detect() == false) then
+  turtle.turnRight()
+  turtle.turnRight()
+end
