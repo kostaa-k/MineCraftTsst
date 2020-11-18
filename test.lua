@@ -73,6 +73,7 @@ function digRandomly(maxTiles)
         else
             digInLine(1)
             table.insert(listOfMoves, "S")
+            numOfMoves = numOfMoves+1
         end
 
     end
