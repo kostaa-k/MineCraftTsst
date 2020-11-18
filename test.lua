@@ -87,7 +87,11 @@ function createReverseList(forwardMoves)
 
     for i = #forwardMoves, 1, -1 do
         local value = forwardMoves[i]
-        table.insert(reverseMoves, value)
+        if(value == "R") then
+            table.insert(reverseMoves, "L")
+        else
+            table.insert(reverseMoves, value)
+        end
     end
 
     return reverseMoves
