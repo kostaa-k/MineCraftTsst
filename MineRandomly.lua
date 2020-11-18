@@ -35,11 +35,16 @@ function turtleDigDown(numTiles)
       if(turtle.detectDown() == true) then
         turtle.digDown()
         local couldMove = turtle.down()
+        local numTimesTried = 0 
         if(couldMove == false) then
-          while(couldMove == false) do
+          while(couldMove == false and numTimesTried<20) do
               local didAttack = turtle.attackDown()
               turtle.digDown()
               couldMove = turtle.down()
+              numTimesTried = numTimesTried+1
+          end
+          if(couldMove == false) then
+            count = count-1
           end
         end
       else
