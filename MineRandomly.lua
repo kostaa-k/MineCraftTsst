@@ -65,10 +65,18 @@ end
 function digInLine(numberOfTiles)
     for i=1,(numberOfTiles) do
       if(turtle.detect() == true) then
+
+        local inFront = turtle.inspect()
+        if(inFront ~= nil) then
+          if(string.find(inFront["name"], "turtle")) then
+            dropNonImportant()
+          end
+        end
         
         if(turtle.compare() == false) then
             local slotToFill = selectCorrectSlot()
         end
+        
         local couldDig = turtle.dig()
         if(couldDig == false) then
           print("COULDNT DIG this way!")
