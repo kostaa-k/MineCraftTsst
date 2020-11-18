@@ -245,6 +245,13 @@ function traverseBackWards(movesToMake)
 
 end
 
+function dropInChestUp()
+  for i=1,16 do
+    turtle.select(i)
+    turtle.dropUp()
+  end
+end
+
 numTilesDown = turtleDigDown(height)
 
 theMoves = digRandomly(tilesToDig, dropEvery)
@@ -258,3 +265,5 @@ if(howManyGoingUp > 0) then
 elseif(howManyGoingUp < 0 ) then
   turtleDigDown(NumTimesWentUp-numTilesDown)
 end
+
+dropInChestUp()
