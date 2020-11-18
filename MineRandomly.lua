@@ -18,6 +18,7 @@ local totalFuelPredicted = (height*2)+(tilesToDig*2)
 local beginFuelLevel = tonumber(turtle.getFuelLevel())
 
 if(totalFuelPredicted >= beginFuelLevel-1000) then
+  print("Not enough Fuel!")
   do return end
 end
 
