@@ -16,6 +16,15 @@ end
 -- facing north -> going left x gets smaller
 
 
+function getDistanceFromPoint(fromX, fromZ, destX, destZ)
+    local xDist = math.abs(destX-fromX)
+    local yDist = math.abs(destZ-fromZ)
+
+    return xDist+yDist
+
+end
+
+
 function getPossibleMoves()
     numTurns = 0
     local listOfMoves = {}
@@ -46,6 +55,16 @@ function goRight()
     turtle.turnLeft()
 end
 
+function getLocationHash(xVal, yVal)
+    local xStr = tostring(xVal)
+    local zStr = toString(yVal)
+
+    local hashVal = xStr .. "," .. zStr
+
+    return hashVal
+    
+end
+
 function goLeft()
     turtle.turnRight()
     turtle.forward()
@@ -55,3 +74,7 @@ end
 local possibleMoves = getPossibleMoves()
 
 for i,v in ipairs(possibleMoves) do print(i,v) end
+
+local myStartLocation = getLocationHash(startX, startZ)
+
+print(myStartLocation)
