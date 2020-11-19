@@ -8,6 +8,11 @@ if #arg > 1 then
     turtleLocationZ = tonumber(arg[2])
 end
 
+local goHome = false
+if #arg > 2 then 
+    goHome = true
+end
+
 
 function canGoRight()
     turtle.turnRight()
@@ -25,7 +30,7 @@ function getDistanceFromPoint(fromX, fromZ, destX, destZ)
 
 end
 
-function goToTurtle(turtleX, turtleZ)
+function goToTurtle(turtleX, turtleZ, toGoHome)
     local currentX, currentZ, currentY = gps.locate()
     local distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
 
@@ -39,10 +44,36 @@ function goToTurtle(turtleX, turtleZ)
         distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
     end
 
-    didDrop = dropBucketOfLava()
+    if(toGoHome == false) then
+        didDrop = dropBucketOfLava()
 
-    os.sleep(20)
+        os.sleep(20)
+    else
+        local theSuccess = turnTowardsChest()
+        print(theSuccess)
+        turtle.suck(3)
+    end
+
 end
+
+function turnTowardsChest()
+    local numTurns = 0
+    while(numTurns < 4) do
+        local aSuccess, theMetadata = turtle.inspect()
+        if(aSuccess == false) then
+            turtle.turnRight()
+            numTurns = numTurns+1
+        else
+            if(string.find(theMetadata["name"], "chest")) then
+                return true
+            end
+        end
+    end
+
+    return false
+
+end
+
 
 function dropBucketOfLava()
     for i=1, 16 do
@@ -98,5 +129,12 @@ function getLocationHash(xVal, zVal)
     
 end
 
+local goHomeX = 491
+local goHomeZ = 478
 
-goToTurtle(turtleLocationX, turtleLocationZ)
+if(goHome == false) then
+    goToTurtle(turtleLocationX, turtleLocationZ, false)
+else
+    goToTurtle(goHomeX, goHomeZ, true)
+    turnTowardsChest()
+end
