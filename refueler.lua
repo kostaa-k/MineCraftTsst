@@ -108,6 +108,8 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
             end
         end
 
+        print(minHeuristicVal)
+        print(minMove)
         makeMove(minMove)
         currentX, currentZ, currentY = gps.locate()
 
