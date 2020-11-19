@@ -35,6 +35,7 @@ function goToTurtle(turtleX, turtleZ)
     while(distFromTurtle > 1) do
         hasRedStone = moveForward(hasRedStone)
         currentX, currentZ, currentY = gps.locate()
+        print(getLocationHash(currentX, currentZ))
         distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
     end
 
@@ -82,6 +83,16 @@ function moveForward(wasRedStone)
     return isRedStone
 end
 
+
+function getLocationHash(xVal, zVal)
+    local xStr = tostring(xVal)
+    local zStr = tostring(zVal)
+
+    local hashVal = xStr .. "," .. zStr
+
+    return hashVal
+    
+end
 
 
 goToTurtle(turtleLocationX, turtleLocationZ)
