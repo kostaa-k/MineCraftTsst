@@ -30,9 +30,10 @@ end
 
 function getRefuel()
     shell.run("refuel")
+    dropBuckets()
 end
 
-function dropBuckets(count)
+function dropBuckets()
 
     for i=1,16 do
         tempItem = turtle.getItemDetail(i)
