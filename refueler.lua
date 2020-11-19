@@ -105,6 +105,7 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
             local heuristicVal = getHeuristicOfMove(startingX, startingZ, getToX, getToZ, possibleMoves[i])
             print(possibleMoves[i])
             print(heuristicVal)
+            print()
             if(heuristicVal <= minHeuristicVal) then
                 minMove = possibleMoves[i]
                 minHeuristicVal = heuristicVal
