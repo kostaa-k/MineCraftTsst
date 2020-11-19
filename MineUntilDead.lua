@@ -47,6 +47,8 @@ function dropBuckets()
         end
   
     end
+
+    os.sleep(2)
 end
 
 for x=1, 2 do
@@ -55,6 +57,5 @@ for x=1, 2 do
         shell.run("MineRandomly", numToGo, tilesToDig, dropEvery)
     end
 
-
-
+    broadcastForFuel()
 end
