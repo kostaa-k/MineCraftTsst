@@ -26,9 +26,9 @@ end
 
 
 function goLeft()
-    turtle.turnRight()
-    turtle.forward()
     turtle.turnLeft()
+    turtle.forward()
+    turtle.turnRight()
 end
 
 function goRight()
