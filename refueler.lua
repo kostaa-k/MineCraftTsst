@@ -94,6 +94,8 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
     local currentX = startingX
     local currentZ = startingZ
 
+    print(currentX, currentY)
+
     while(currentX ~= getToX and currentZ ~= getToZ) do
         local possibleMoves = getPossibleMoves()
         if (#possibleMoves == 0) then
