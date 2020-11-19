@@ -90,11 +90,10 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
     local currentX = startingX
     local currentZ = startingZ
 
-    print(getLocationHash(currentX, currentZ))
-
     while(currentX ~= getToX or currentZ ~= getToZ) do
         print(getLocationHash(currentX, currentZ))
         local possibleMoves = getPossibleMoves()
+        for i,v in ipairs(possibleMoves) do print(i,v) end
         if (#possibleMoves == 0) then
             return -1
         end
@@ -103,19 +102,13 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
         local minHeuristicVal = 1000
         for i=1, #possibleMoves do
             local heuristicVal = getHeuristicOfMove(startingX, startingZ, getToX, getToZ, possibleMoves[i])
-            print(possibleMoves[i])
-            print(heuristicVal)
-            print()
+            
             if(heuristicVal <= minHeuristicVal) then
                 minMove = possibleMoves[i]
                 minHeuristicVal = heuristicVal
             end
         end
-
-        print("Chose this value")
         print(minHeuristicVal)
-        print(minMove)
-        print()
         makeMove(minMove)
         currentX, currentZ, currentY = gps.locate()
 
