@@ -92,16 +92,16 @@ function getLocationHash(xVal, zVal)
 end
 
 
-function getCoordsOfMove(theCurrentX, theCurrentY, theMove)
+function getCoordsOfMove(theCurrentX, theCurrentZ, theMove)
 
     if(theMove == "S") then
-        return theX, theZ-1
+        return theCurrentX, theCurrentZ-1
     elseif(theMove == "R") then
-        return theX+1, theZ
+        return theCurrentX+1, theCurrentZ
     elseif(theMove == "L") then
-        return theX-1, theZ
+        return theCurrentX-1, theCurrentZ
     elseif(theMove == "B") then
-        return theX, theZ+1
+        return theCurrentX, theCurrentZ+1
     end
 
 end
