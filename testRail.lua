@@ -49,7 +49,7 @@ function dropBucketOfLava()
         tempItem = turtle.getItemDetail(i)
         
         if (tempItem ~= nil) then
-            if string.find(tempName, "lava_bucket") then
+            if string.find(tempItem["name"], "lava_bucket") then
                 turtle.select(i)
                 turtle.drop()
               end
