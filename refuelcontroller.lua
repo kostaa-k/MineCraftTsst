@@ -17,6 +17,6 @@ for c in string.gmatch(message, ".") do
         secondSide = true
     end
 end 
-'
+
 print(xValueStr)
 print(zValueStr)
