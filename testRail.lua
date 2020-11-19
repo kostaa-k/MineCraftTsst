@@ -70,7 +70,6 @@ function turnTowardsChest()
         local aSuccess, theMetadata = turtle.inspect()
         if(aSuccess == false) then
             turtle.turnRight()
-            numTurns = numTurns+1
         else
             if(string.find(theMetadata["name"], "chest")) then
                 return true
