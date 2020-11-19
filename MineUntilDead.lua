@@ -14,6 +14,8 @@ if #arg > 2 then
 end
 
 function broadcastForFuel()
+    turtle.turnLeft()
+    turtle.turnLeft()
     rednet.open("left")
     os.sleep(2)
     local xCord, yCord, zCord = gps.locate()
@@ -27,8 +29,23 @@ function broadcastForFuel()
 end
 
 function getRefuel()
-    turtle.suck()
     shell.run("refuel")
+end
+
+function dropBuckets(count)
+
+    for i=1,16 do
+        tempItem = turtle.getItemDetail(i)
+        
+        if tempItem ~= nil then
+          tempName = string.lower(tempItem["name"])
+          if string.find(tempName, "bucket") then
+            turtle.select(i)
+            turtle.drop()
+          end
+        end
+  
+    end
 end
 
 for x=1, 2 do

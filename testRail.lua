@@ -40,6 +40,8 @@ function goToTurtle(turtleX, turtleZ)
     end
 
     didDrop = dropBucketOfLava()
+
+    os.sleep(20)
 end
 
 function dropBucketOfLava()
@@ -47,13 +49,15 @@ function dropBucketOfLava()
         tempItem = turtle.getItemDetail(i)
         
         if (tempItem ~= nil) then
-            print(tempItem["name"])
+            if string.find(tempName, "lava_bucket") then
+                turtle.select(i)
+                turtle.drop()
+              end
         end
     end
 
     return true
 end
-
 
 function moveForward(wasRedStone) 
     local success, tableData = turtle.inspectDown()
