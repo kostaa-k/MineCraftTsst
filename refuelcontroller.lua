@@ -22,3 +22,9 @@ end
 
 print(xValueStr)
 print(zValueStr)
+
+local xValue = tonumber(xValueStr)
+local zValue = tonumber(zValueStr)
+
+shell.run("testRail", xValue, zValue)
+shel.run("testRail", 1, 2, 3)
