@@ -30,10 +30,10 @@ function getPossibleMoves()
             elseif (numTurns == 0) then
                 table.insert(listOfMoves, "S")
             end
-        turtle.turnRight()
-        numTurns = numTurns+1
         
         end
+        turtle.turnRight()
+        numTurns = numTurns+1
     end
 
     return listOfMoves
