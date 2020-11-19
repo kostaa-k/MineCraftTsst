@@ -1,5 +1,5 @@
 
 rednet.open("left")
-local theMessage = rednet.receive()
+senderID, theMessage, distanceAway, theProtocol = rednet.receive()
 
 print(theMessage)
