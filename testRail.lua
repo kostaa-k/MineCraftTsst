@@ -73,6 +73,8 @@ function turnTowardsChest()
         else
             if(string.find(theMetadata["name"], "chest")) then
                 return true
+            else
+                turtle.turnRight()
             end
         end
 
