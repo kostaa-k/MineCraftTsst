@@ -20,7 +20,7 @@ function getDistanceFromPoint(fromX, fromZ, destX, destZ)
     local xDist = math.abs(destX-fromX)
     local yDist = math.abs(destZ-fromZ)
 
-    return xDist+yDist
+    return (xDist+yDist)
 
 end
 
@@ -38,7 +38,7 @@ function goRight()
 end
 
 function getPossibleMoves()
-    numTurns = 0
+    local numTurns = 0
     local listOfMoves = {}
     while(numTurns < 4) do
         if(turtle.detect() == false) then
@@ -103,14 +103,18 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
         local minHeuristicVal = 1000
         for i=1, #possibleMoves do
             local heuristicVal = getHeuristicOfMove(startingX, startingZ, getToX, getToZ, possibleMoves[i])
+            print(possibleMoves[i])
+            print(heuristicVal)
             if(heuristicVal <= minHeuristicVal) then
                 minMove = possibleMoves[i]
                 minHeuristicVal = heuristicVal
             end
         end
 
+        print("Chose this value")
         print(minHeuristicVal)
         print(minMove)
+        print()
         makeMove(minMove)
         currentX, currentZ, currentY = gps.locate()
 
