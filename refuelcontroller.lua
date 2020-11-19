@@ -8,13 +8,15 @@ local zValueStr = ""
 
 local secondSide = false
 for c in string.gmatch(message, ".") do 
-    if(secondSide == false) then
-        xValueStr = xValueStr..c
-    else
-        zValueStr = zValueStr..c
-    end
     if(c == ",") then
         secondSide = true
+
+    else
+        if(secondSide == false) then
+            xValueStr = xValueStr..c
+        else
+            zValueStr = zValueStr..c
+        end
     end
 end 
 
