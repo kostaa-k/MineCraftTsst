@@ -49,6 +49,19 @@ function getPossibleMoves()
 
 end
 
+function move(whereTo)
+
+    if(whereTo == "S") then
+        turtle.forward()
+    elseif(whereTo == "R") then
+        goRight()
+    elseif(whereTo == "L") then
+        goLeft()
+    elseif(whereTo == "B") then
+        turtle.back()
+    end
+end
+
 function goRight()
     turtle.turnRight()
     turtle.forward()
@@ -57,7 +70,7 @@ end
 
 function getLocationHash(xVal, yVal)
     local xStr = tostring(xVal)
-    local zStr = toString(yVal)
+    local zStr = tostring(yVal)
 
     local hashVal = xStr .. "," .. zStr
 
