@@ -14,6 +14,12 @@ end
 
 
 for i=1, numberOfTiles do
+    local success, tableData = turtle.inspectDown()
+    if(success == true) then
+        if(string.find(tableData["name"], "Redstone")) then
+            turtle.turnRight()
+        end
+    end
     local couldMove =  turtle.forward()
     if(couldMove == false) then
         if(canGoRight() == true) then
