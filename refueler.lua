@@ -85,16 +85,12 @@ function getLocationHash(xVal, zVal)
 end
 
 
-
-
-
-
 function getToPoint(startingX, startingZ, getToX, getToZ)
 
     local currentX = startingX
     local currentZ = startingZ
 
-    print(currentX, currentY)
+    print(getLocationHash(currentX, currentZ))
 
     while(currentX ~= getToX and currentZ ~= getToZ) do
         local possibleMoves = getPossibleMoves()
