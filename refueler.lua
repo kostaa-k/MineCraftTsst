@@ -113,7 +113,7 @@ function getToPoint(getToX, getToZ)
     local currentX, currentZ, currentY = gps.locate()
 
     while(currentX ~= getToX or currentZ ~= getToZ) do
-        table.insert(visitedStates, getLocationHash(currentX, currentY))
+        table.insert(visitedStates, getLocationHash(currentX, currentZ))
         print(getLocationHash(currentX, currentZ))
         local possibleMoves = getPossibleMoves()
         for i,v in ipairs(possibleMoves) do print(i,v) end
@@ -137,8 +137,8 @@ function getToPoint(getToX, getToZ)
                 end
             end
         end
-        print(minHeuristicVal)
-        makeMove(minMove, currentX, currentY)
+
+        makeMove(minMove, currentX, currentZ)
         currentX, currentZ, currentY = gps.locate()
 
     end
