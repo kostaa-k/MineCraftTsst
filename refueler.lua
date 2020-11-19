@@ -92,7 +92,7 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
 
     print(getLocationHash(currentX, currentZ))
 
-    while(currentX ~= getToX and currentZ ~= getToZ) do
+    while(currentX ~= getToX or currentZ ~= getToZ) do
         print(getLocationHash(currentX, currentZ))
         local possibleMoves = getPossibleMoves()
         if (#possibleMoves == 0) then
