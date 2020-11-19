@@ -131,10 +131,12 @@ end
 
 
 
-local possibleMoves = getPossibleMoves()
+-- local possibleMoves = getPossibleMoves()
 
-for i,v in ipairs(possibleMoves) do print(i,v) end
+-- for i,v in ipairs(possibleMoves) do print(i,v) end
 
-local myStartLocation = getLocationHash(startX, startZ)
+-- local myStartLocation = getLocationHash(startX, startZ)
 
-print(myStartLocation)
+-- print(myStartLocation)
+
+getToPoint(startX, startZ, toX, toZ)
