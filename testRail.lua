@@ -50,6 +50,7 @@ function goToTurtle(turtleX, turtleZ, toGoHome)
         os.sleep(20)
     else
         local theSuccess = turnTowardsChest()
+        dropallBuckets()
         print(theSuccess)
         turtle.suck(3)
     end
@@ -68,6 +69,8 @@ function turnTowardsChest()
                 return true
             end
         end
+
+        numTurns = numTurns+1
     end
 
     return false
@@ -81,6 +84,22 @@ function dropBucketOfLava()
         
         if (tempItem ~= nil) then
             if string.find(tempItem["name"], "lava_bucket") then
+                turtle.select(i)
+                turtle.drop()
+              end
+        end
+    end
+
+    return true
+end
+
+
+function dropallBuckets()
+    for i=1, 16 do
+        tempItem = turtle.getItemDetail(i)
+        
+        if (tempItem ~= nil) then
+            if string.find(tempItem["name"], "bucket") then
                 turtle.select(i)
                 turtle.drop()
               end
