@@ -16,12 +16,12 @@ end
 for i=1, numberOfTiles do
     local couldMove =  turtle.forward()
     if(couldMove == false) then
-        local canIGoRight = canGoRight()
-        turtle.turnLeft()
-        if(canIGoRight  == true) then
-            turtle.turnRight()
+        if(canGoRight() == true) then
+            turtle.forward()
         else
             turtle.turnLeft()
+            turtle.turnLeft()
+            turtle.forward()
         end
     end
 end
