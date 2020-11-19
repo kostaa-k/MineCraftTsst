@@ -29,9 +29,13 @@ function goToTurtle(turtleX, turtleZ)
     local currentX, currentZ, currentY = gps.locate()
     local distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
 
+    print(distFromTurtle)
+
     local hasRedStone = false
     while(distFromTurtle > 1) do
         hasRedStone = moveForward(hasRedStone)
+        currentX, currentZ, currentY = gps.locate()
+        distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
     end
 
     didDrop = dropBucketOfLava()
@@ -52,7 +56,7 @@ end
 
 function moveForward(wasRedStone) 
     local success, tableData = turtle.inspectDown()
-    isRedStone = false
+    local isRedStone = false
     if(success == true) then
         if(string.find(tableData["name"], "Redstone")) then
             if(wasRedStone == false) then
