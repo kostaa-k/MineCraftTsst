@@ -92,11 +92,28 @@ function getLocationHash(xVal, zVal)
 end
 
 
+function getCoordsOfMove(theCurrentX, theCurrentY, theMove)
+
+    if(theMove == "S") then
+        return theX, theZ-1
+    elseif(theMove == "R") then
+        return theX+1, theZ
+    elseif(theMove == "L") then
+        return theX-1, theZ
+    elseif(theMove == "B") then
+        return theX, theZ+1
+    end
+
+end
+
 function getToPoint(getToX, getToZ)
+
+    local visitedStates = {}
 
     local currentX, currentZ, currentY = gps.locate()
 
     while(currentX ~= getToX or currentZ ~= getToZ) do
+        table.insert(visitedStates, getLocationHash(currentX, currentY))
         print(getLocationHash(currentX, currentZ))
         local possibleMoves = getPossibleMoves()
         for i,v in ipairs(possibleMoves) do print(i,v) end
@@ -107,11 +124,17 @@ function getToPoint(getToX, getToZ)
         local minMove = "B"
         local minHeuristicVal = 1000
         for i=1, #possibleMoves do
-            local heuristicVal = getHeuristicOfMove(currentX, currentZ, getToX, getToZ, possibleMoves[i])
-            
-            if(heuristicVal <= minHeuristicVal) then
-                minMove = possibleMoves[i]
-                minHeuristicVal = heuristicVal
+            local thePosHash = getLocationHash(getCoordsOfMove(currentX, currentZ, possibleMoves[i]))
+
+            local isInStates = hasBeenVisitedBefore(visitedStates, thePosHash)
+
+            if(isInStates == false) then
+                local heuristicVal = getHeuristicOfMove(currentX, currentZ, getToX, getToZ, possibleMoves[i])
+                
+                if(heuristicVal <= minHeuristicVal) then
+                    minMove = possibleMoves[i]
+                    minHeuristicVal = heuristicVal
+                end
             end
         end
         print(minHeuristicVal)
@@ -120,6 +143,15 @@ function getToPoint(getToX, getToZ)
     end
 end
 
+function hasBeenVisitedBefore(theVisistedStates, theLocationHash)
+    for i=1, #theVisistedStates do
+        if (theLocationHash == theVisistedStates[i]) then
+            return true
+        end
+    end
+
+    return false
+end
 function getHeuristicOfMove(theX, theZ, destinationX, destinationZ, theMove)
 
     if(theMove == "S") then
