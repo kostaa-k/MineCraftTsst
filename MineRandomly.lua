@@ -130,7 +130,7 @@ end
 
 function dropNonImportant(count)
 
-    importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium", "turtle"}
+    importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium", "turtle", "obsidian", "sapphire"}
     for i=1,16 do
         tempItem = turtle.getItemDetail(i)
         
