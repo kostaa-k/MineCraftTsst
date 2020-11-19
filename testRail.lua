@@ -8,8 +8,13 @@ if #arg > 1 then
     turtleLocationZ = tonumber(arg[2])
 end
 
-local goHome = false
+local messageToSend = "NOT WORKING"
 if #arg > 2 then 
+    messageToSend = arg[3]
+end
+
+local goHome = false
+if #arg > 3 then 
     goHome = true
 end
 
@@ -30,7 +35,7 @@ function getDistanceFromPoint(fromX, fromZ, destX, destZ)
 
 end
 
-function goToTurtle(turtleX, turtleZ, toGoHome)
+function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
     local currentX, currentZ, currentY = gps.locate()
     local distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
 
@@ -46,6 +51,8 @@ function goToTurtle(turtleX, turtleZ, toGoHome)
 
     if(toGoHome == false) then
         didDrop = dropBucketOfLava()
+        rednet.open("left")
+        rednet.broadcast(sendingMessage)
 
         os.sleep(20)
     else
@@ -152,8 +159,8 @@ local goHomeX = 491
 local goHomeZ = 478
 
 if(goHome == false) then
-    goToTurtle(turtleLocationX, turtleLocationZ, false)
+    goToTurtle(turtleLocationX, turtleLocationZ, false, messageToSend)
 else
-    goToTurtle(goHomeX, goHomeZ, true)
+    goToTurtle(goHomeX, goHomeZ, true, "none")
     turnTowardsChest()
 end

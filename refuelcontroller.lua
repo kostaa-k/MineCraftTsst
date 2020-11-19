@@ -26,5 +26,5 @@ print(zValueStr)
 local xValue = tonumber(xValueStr)
 local zValue = tonumber(zValueStr)
 
-shell.run("testRail", xValue, zValue)
-shell.run("testRail", 1, 2, 3)
+shell.run("testRail", xValue, zValue, message)
+shell.run("testRail", 1, 2, 3, 4)

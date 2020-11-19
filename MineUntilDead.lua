@@ -18,8 +18,8 @@ function broadcastForFuel()
     turtle.turnLeft()
     rednet.open("left")
     os.sleep(2)
-    local xCord, yCord, zCord = gps.locate()
-    local posValue = xStr .. "," .. zStr
+    local xCord, zCord, yCord = gps.locate()
+    local posValue = tostring(xCord) .. "," .. tostring(zCord)
     rednet.broadcast(posValue)
     local id,message = rednet.receive()
 
@@ -52,7 +52,7 @@ function dropBuckets()
 end
 
 for x=1, 2 do
-    for i=1, 3 do
+    for i=1, 1 do
         local numToGo = math.random(35, height)
         shell.run("MineRandomly", numToGo, tilesToDig, dropEvery)
     end
