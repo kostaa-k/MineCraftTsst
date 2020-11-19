@@ -16,6 +16,17 @@ end
 -- facing north -> going left x gets smaller
 
 
+function faceNorth()
+    local allMoves = getPossibleMoves()
+    if (#allMoves == 0) then
+        print("Can't Move")
+        return false
+    
+    end
+    local aCurrentX, aCurrentZ, aCurrentY = gps.locate()
+
+end
+
 function getDistanceFromPoint(fromX, fromZ, destX, destZ)
     local xDist = math.abs(destX-fromX)
     local yDist = math.abs(destZ-fromZ)
@@ -75,7 +86,6 @@ function makeMove(whereTo, theX, theZ)
     elseif(whereTo == "B") then
         turtle.back()
         return theX, theZ+1
-        
     end
 
     return nil
@@ -108,6 +118,8 @@ end
 
 function getToPoint(getToX, getToZ)
 
+    local frontierNodes = {}
+
     local visitedStates = {}
 
     local currentX, currentZ, currentY = gps.locate()
@@ -121,7 +133,7 @@ function getToPoint(getToX, getToZ)
             return -1
         end
 
-        local minMove = "B"
+        local minMove = "GoBack"
         local minHeuristicVal = 1000
         for i=1, #possibleMoves do
             local thePosHash = getLocationHash(getCoordsOfMove(currentX, currentZ, possibleMoves[i]))
@@ -136,6 +148,10 @@ function getToPoint(getToX, getToZ)
                     minHeuristicVal = heuristicVal
                 end
             end
+        end
+
+        if(minMove == "GoBack") then
+            getToPoint(getToX, getToZ)
         end
 
         makeMove(minMove, currentX, currentZ)
@@ -163,6 +179,7 @@ function getHeuristicOfMove(theX, theZ, destinationX, destinationZ, theMove)
         return getDistanceFromPoint(theX-1, theZ, destinationX, destinationZ)
     elseif(theMove == "B") then
         return getDistanceFromPoint(theX, theZ+1, destinationX, destinationZ)
+
     end
 end
 
