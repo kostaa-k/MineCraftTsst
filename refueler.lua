@@ -75,6 +75,7 @@ function makeMove(whereTo, theX, theZ)
     elseif(whereTo == "B") then
         turtle.back()
         return theX, theZ+1
+        
     end
 
     return nil
@@ -142,4 +143,4 @@ end
 
 -- print(myStartLocation)
 
-getToPoint(startX, startZ, toX, toZ)
+getToPoint(toX, toZ)
