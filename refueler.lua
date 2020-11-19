@@ -61,17 +61,23 @@ function getPossibleMoves()
 
 end
 
-function makeMove(whereTo)
+function makeMove(whereTo, theX, theZ)
 
     if(whereTo == "S") then
         turtle.forward()
+        return theX, theZ-1
     elseif(whereTo == "R") then
         goRight()
+        return theX+1, theZ
     elseif(whereTo == "L") then
         goLeft()
+        return theX-1, theZ
     elseif(whereTo == "B") then
         turtle.back()
+        return theX, theZ+1
     end
+
+    return nil
 end
 
 function getLocationHash(xVal, zVal)
@@ -85,10 +91,9 @@ function getLocationHash(xVal, zVal)
 end
 
 
-function getToPoint(startingX, startingZ, getToX, getToZ)
+function getToPoint(getToX, getToZ)
 
-    local currentX = startingX
-    local currentZ = startingZ
+    local currentX, currentZ, currentY = gps.locate()
 
     while(currentX ~= getToX or currentZ ~= getToZ) do
         print(getLocationHash(currentX, currentZ))
@@ -101,7 +106,7 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
         local minMove = "B"
         local minHeuristicVal = 1000
         for i=1, #possibleMoves do
-            local heuristicVal = getHeuristicOfMove(startingX, startingZ, getToX, getToZ, possibleMoves[i])
+            local heuristicVal = getHeuristicOfMove(currentX, currentZ, getToX, getToZ, possibleMoves[i])
             
             if(heuristicVal <= minHeuristicVal) then
                 minMove = possibleMoves[i]
@@ -109,8 +114,7 @@ function getToPoint(startingX, startingZ, getToX, getToZ)
             end
         end
         print(minHeuristicVal)
-        makeMove(minMove)
-        currentX, currentZ, currentY = gps.locate()
+        currentX, currentY = makeMove(minMove)
 
     end
 end
