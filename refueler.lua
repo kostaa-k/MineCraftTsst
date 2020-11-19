@@ -21,10 +21,6 @@ function getPossibleMoves()
     local listOfMoves = {}
     while(numTurns < 4) do
         if(turtle.detect() == false) then
-            turtle.turnRight()
-            numTurns = numTurns+1
-        else
-            canGo = true
             if(numTurns == 1) then
                 table.insert(listOfMoves, "R")
             elseif (numTurns == 2) then
@@ -34,7 +30,9 @@ function getPossibleMoves()
             elseif (numTurns == 0) then
                 table.insert(listOfMoves, "S")
             end
-            numTurns = 4
+        turtle.turnRight()
+        numTurns = numTurns+1
+        
         end
     end
 
