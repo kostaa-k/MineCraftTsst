@@ -115,7 +115,7 @@ function getToPoint(getToX, getToZ)
             end
         end
         print(minHeuristicVal)
-        currentX, currentY = makeMove(minMove)
+        currentX, currentZ = makeMove(minMove, currentX, currentZ)
 
     end
 end
