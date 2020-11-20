@@ -30,6 +30,8 @@ function broadcastForFuel()
     end
         
     getRefuel()
+    turtle.turnRight()
+    turtle.turnRight()
 end
 
 function getRefuel()
