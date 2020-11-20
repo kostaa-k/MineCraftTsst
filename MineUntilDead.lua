@@ -45,6 +45,10 @@ end
 
 function getRefuel()
     shell.run("refuel")
+    shell.run("refuel")
+    shell.run("refuel")
+    shell.run("refuel")
+    shell.run("refuel")
     local isTurtleThere = turnUntilRefueler()
     if(isTurtleThere == true) then
         dropBuckets()

@@ -152,7 +152,7 @@ function moveForward(wasRedStone)
     local success, tableData = turtle.inspectDown()
     local isRedStone = false
     if(success == true) then
-        if(string.find(tableData["name"], "Redstone")) then
+        if(string.find(tableData["name"], "redstone")) then
             if(wasRedStone == false) then
                 turtle.turnRight()
             end
