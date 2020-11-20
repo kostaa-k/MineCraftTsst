@@ -27,12 +27,6 @@ end
 local startingX, startingZ, startingY = gps.locate()
 
 
-
-if(turtle.inspect() == false) then
-  print("not facing a wall")
-  do return end
-end
-
 function turtleDigDown(numTiles)
     local count = 0
     for i=1,numTiles do 
@@ -134,7 +128,7 @@ end
 
 function dropNonImportant(count)
 
-    importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium", "turtle", "obsidian", "sapphire"}
+    importantWords = {"ore", "diamond", "emerald", "ruby", "coal", "redstone", "basalt", "redstone", "draconium", "turtle", "obsidian", "sapphire", "bucket"}
     for i=1,16 do
         tempItem = turtle.getItemDetail(i)
         

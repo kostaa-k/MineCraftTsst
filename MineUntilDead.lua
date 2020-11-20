@@ -14,8 +14,6 @@ if #arg > 2 then
 end
 
 function broadcastForFuel()
-    turtle.turnLeft()
-    turtle.turnLeft()
     rednet.open("left")
     os.sleep(2)
     local xCord, zCord, yCord = gps.locate()
@@ -30,7 +28,28 @@ end
 
 function getRefuel()
     shell.run("refuel")
-    dropBuckets()
+    local isTurtleThere = turnUntilRefueler()
+    if(isTurtleThere == true) then
+        dropBuckets()
+    end
+end
+
+function turnUntilRefueler()
+    local numTurns = 0
+    while(numTurns < 4) do
+        local aSuccess, theMetadata = turtle.inspect()
+        if(aSuccess == false) then
+            turtle.turnRight()
+        else
+            if(string.find(theMetadata["name"], "turtle_advanced")) then
+                return true
+            else
+                turtle.turnRight()
+            end
+        end
+
+        numTurns = numTurns+1
+    end
 end
 
 function dropBuckets()
