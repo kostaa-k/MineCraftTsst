@@ -24,6 +24,12 @@ if(totalFuelPredicted >= beginFuelLevel-1000) then
   do return end
 end
 
+local startingX, startingZ, startingY = gps.locate()
+
+
+
+
+
 if(turtle.inspect() == false) then
   print("not facing a wall")
   do return end
@@ -261,7 +267,15 @@ traverseBackWards(theReverseMoves)
 
 local howManyGoingUp = numTilesDown-NumTimesWentUp
 if(howManyGoingUp > 0) then
-  turtleComeUp(numTilesDown-NumTimesWentUp)
+  local currentX, currentZ, currentY = gps.locate()
+  while(currentX == nil) do
+    turtleComeUp(1)
+    currentX, currentZ, currentY = gps.locate()
+  end
+
+  while(currentY < startingY) do
+      turtleComeUp(1)
+  end
 elseif(howManyGoingUp < 0 ) then
   turtleDigDown(NumTimesWentUp-numTilesDown)
 end
