@@ -50,11 +50,14 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
     end
 
     if(toGoHome == false) then
+        turnTowardsTurtle()
         didDrop = dropBucketOfLava()
         rednet.open("left")
         rednet.broadcast(sendingMessage)
 
-        os.sleep(20)
+        os.sleep(5)
+        turtle.turnRight()
+
     else
         local theSuccess = turnTowardsChest()
         dropallBuckets()
@@ -72,6 +75,28 @@ function turnTowardsChest()
             turtle.turnRight()
         else
             if(string.find(theMetadata["name"], "chest")) then
+                return true
+            else
+                turtle.turnRight()
+            end
+        end
+
+        numTurns = numTurns+1
+    end
+
+    return false
+
+end
+
+
+function turnTowardsTurtle()
+    local numTurns = 0
+    while(numTurns < 4) do
+        local aSuccess, theMetadata = turtle.inspect()
+        if(aSuccess == false) then
+            turtle.turnRight()
+        else
+            if(string.find(theMetadata["name"], "turtle")) then
                 return true
             else
                 turtle.turnRight()
