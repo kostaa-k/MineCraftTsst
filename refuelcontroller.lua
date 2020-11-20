@@ -42,6 +42,7 @@ local id, message = rednet.receive()
 while(message ~= "STOP NOW") do 
 
     if (string.find(message, "FROM COMMAND")) then
+        rednet.broadcast("REFUELER BUSY")
         actOnMessage(message)
         rednet.broadcast("REFUELER RDY")
     end
