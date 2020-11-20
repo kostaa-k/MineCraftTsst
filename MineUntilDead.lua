@@ -13,7 +13,13 @@ if #arg > 2 then
     dropEvery = tonumber(arg[3])
 end
 
-function broadcastForFuel()
+local isItACorner = false
+if #arg > 3 then 
+    isItACorner = true
+end
+
+
+function broadcastForFuel(isCorner)
     rednet.open("left")
     os.sleep(2)
     local xCord, zCord, yCord = gps.locate()
@@ -31,7 +37,10 @@ function broadcastForFuel()
         
     getRefuel()
     turtle.turnRight()
-    turtle.turnRight()
+
+    if(isCorner == false) then
+        turtle.turnRight()
+    end
 end
 
 function getRefuel()
@@ -84,5 +93,5 @@ for x=1, 20 do
         shell.run("MineRandomly", numToGo, tilesToDig, dropEvery)
     end
 
-    broadcastForFuel()
+    broadcastForFuel(isItACorner)
 end
