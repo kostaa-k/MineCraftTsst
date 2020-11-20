@@ -28,8 +28,6 @@ local startingX, startingZ, startingY = gps.locate()
 
 
 
-
-
 if(turtle.inspect() == false) then
   print("not facing a wall")
   do return end
@@ -275,6 +273,7 @@ if(howManyGoingUp > 0) then
 
   while(currentY < startingY) do
       turtleComeUp(1)
+      currentX, currentZ, currentY = gps.locate()
   end
 elseif(howManyGoingUp < 0 ) then
   turtleDigDown(NumTimesWentUp-numTilesDown)
