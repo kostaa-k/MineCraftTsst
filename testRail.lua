@@ -63,6 +63,11 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
         dropallBuckets()
         print(theSuccess)
         turtle.suck(3)
+        shell.run("refuel")
+        dropallBuckets()
+        turtle.suck()
+        turtle.suck()
+        turtle.suck()
     end
 
 end
