@@ -18,10 +18,10 @@ function broadcastForFuel()
     os.sleep(2)
     local xCord, zCord, yCord = gps.locate()
     local posValue = tostring(xCord) .. "," .. tostring(zCord)
-    rednet.broadcast("MINER Need Fuel at-"..posValue)
+    rednet.broadcast("MINER Need Fuel at:"..posValue)
 
     --this is the bots message
-    local finishedValue = "Refueling-"..posValue
+    local finishedValue = "Refueling:"..posValue
 
     local id,message = rednet.receive()
 

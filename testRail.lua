@@ -53,7 +53,7 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
         turnTowardsTurtle()
         didDrop = dropBucketOfLava()
         rednet.open("left")
-        rednet.broadcast("Refueling-"..sendingMessage)
+        rednet.broadcast("Refueling:"..sendingMessage)
 
         os.sleep(5)
         turtle.turnRight()

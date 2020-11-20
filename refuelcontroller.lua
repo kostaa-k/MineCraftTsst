@@ -36,6 +36,7 @@ end
 
 local count = 0
 rednet.open("left")
+rednet.broadcast("REFUELER RDY")
 local id, message = rednet.receive()
 
 while(message ~= "STOP NOW") do 
