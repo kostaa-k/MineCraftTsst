@@ -56,7 +56,6 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
         rednet.broadcast("Refueling:"..sendingMessage)
 
         os.sleep(5)
-        turtle.turnRight()
 
     else
         local theSuccess = turnTowardsChest()
