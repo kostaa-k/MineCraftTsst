@@ -91,7 +91,7 @@ function dropBuckets()
     os.sleep(2)
 end
 
-for x=1, 20 do
+for x=1, 100 do
     for i=1, 10 do
         local numToGo = math.random(35, height)
         shell.run("MineRandomly", numToGo, tilesToDig, dropEvery)
