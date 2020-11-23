@@ -155,7 +155,7 @@ function moveForward(wasRedStone)
     local success, tableData = turtle.inspectDown()
     local isRedStone = false
     if(success == true) then
-        if(string.find(tableData["name"], "redstone")) then
+        if(string.find(tableData["name"], "drac")) then
             if(wasRedStone == false) then
                 turtle.turnRight()
             end
@@ -190,8 +190,8 @@ function getLocationHash(xVal, zVal)
     
 end
 
-local goHomeX = 491
-local goHomeZ = 478
+local goHomeX = turtleLocationX
+local goHomeZ = turtleLocationZ
 
 if(goHome == false) then
     goToTurtle(turtleLocationX, turtleLocationZ, false, messageToSend)

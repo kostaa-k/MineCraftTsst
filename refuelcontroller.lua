@@ -1,4 +1,15 @@
 
+
+local turtleHomeLocationX = 506
+if #arg > 0 then 
+    turtleHomeLocationX = tonumber(arg[1])
+end
+
+local turtleHomeLocationZ = 466
+if #arg > 1 then 
+    turtleHomeLocationZ = tonumber(arg[2])
+end
+
 function actOnMessage(theMessage)
 
     local xValueStr = ""
@@ -29,7 +40,7 @@ function actOnMessage(theMessage)
     local reconstructedMessage = xValueStr..","..zValueStr
 
     shell.run("testRail", xValue, zValue, reconstructedMessage)
-    shell.run("testRail", 1, 2, 3, 4)
+    shell.run("testRail", turtleHomeLocationX, turtleHomeLocationZ, 3, 4)
 end
 
 
