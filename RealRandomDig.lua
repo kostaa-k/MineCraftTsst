@@ -233,8 +233,8 @@ while(finishedX ~= startingX or finishedZ~= startingZ) do
 end
 
 local howManyGoingUp = numTilesDown-NumTimesWentUp
+local currentX, currentZ, currentY = gps.locate()
 if(howManyGoingUp > 0) then
-  local currentX, currentZ, currentY = gps.locate()
   while(currentX == nil) do
     turtleComeUp(1)
     currentX, currentZ, currentY = gps.locate()
@@ -246,6 +246,13 @@ if(howManyGoingUp > 0) then
   end
 elseif(howManyGoingUp < 0 ) then
   turtleDigDown(NumTimesWentUp-numTilesDown)
+end
+
+local currentX, currentZ, currentY = gps.locate()
+
+while(currentY < startingY) do
+  turtleComeUp(1)
+  currentX, currentZ, currentY = gps.locate()
 end
 
 dropNonImportant(1)
