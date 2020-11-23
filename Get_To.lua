@@ -120,20 +120,16 @@ function getToCoords(getToX, getToZ)
 
   if(thisX > getToX) then
     currentDirection = turtleFaceDirection(currentDirection, "W")
-    print("Going West")
     while(thisX > getToX) do
         digInLine(1)
         thisX, thisZ, thisY = gps.locate()
-        print(thisX, getToX)
     end
   
   elseif(thisX < getToX) then
     currentDirection = turtleFaceDirection(currentDirection, "E")
-    print("Going East")
     while(thisX < getToX) do
         digInLine(1)
         thisX, thisZ, thisY = gps.locate()
-        print(thisX, getToX)
     end
   end
 
