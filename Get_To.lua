@@ -107,6 +107,7 @@ function turtleFaceDirection(currentDirectionFacing, endDirection)
     turtle.turnRight()
   end
 
+  return endDirection
 end
 
 function getToCoords(getToX, getToZ)
@@ -122,7 +123,7 @@ function getToCoords(getToX, getToZ)
   local currentZChange = getToZ-thisZ
 
   if(thisX > getToX) then
-    turtleFaceDirection(currentDirection, "W")
+    currentDirection = turtleFaceDirection(currentDirection, "W")
     print("Going West")
     while(thisX > getToX) do
         digInLine(1)
@@ -131,7 +132,7 @@ function getToCoords(getToX, getToZ)
     end
   
   elseif(thisX < getToX) then
-    turtleFaceDirection(currentDirection, "E")
+    currentDirection = turtleFaceDirection(currentDirection, "E")
     print("Going East")
     while(thisX < getToX) do
         digInLine(1)
@@ -141,14 +142,14 @@ function getToCoords(getToX, getToZ)
   end
 
   if(thisZ > getToZ) then
-    turtleFaceDirection(currentDirection, "N")
+    currentDirection = turtleFaceDirection(currentDirection, "N")
 
     while(thisZ > getToZ) do
         digInLine(1)
         thisX, thisZ, thisY = gps.locate()
     end
   elseif(thisZ < getToZ) then
-    turtleFaceDirection(currentDirection, "S")
+    currentDirection = turtleFaceDirection(currentDirection, "S")
 
     while(thisZ < getToZ) do
         digInLine(1)
