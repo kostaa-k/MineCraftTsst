@@ -227,8 +227,10 @@ realDigRandom(tilesToDig, dropEvery)
 
 
 local finishedX, finishedZ, finishedY = gps.locate()
-shell.run("Get_To", startingX, startingZ)
-
+while(finishedX ~= startingX or finishedZ~= startingZ) do
+    shell.run("Get_To", startingX, startingZ)
+    finishedX, finishedZ, finishedY = gps.locate()
+end
 
 local howManyGoingUp = numTilesDown-NumTimesWentUp
 if(howManyGoingUp > 0) then
