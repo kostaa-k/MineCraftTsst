@@ -102,6 +102,10 @@ function getToCoords(getToX, getToZ)
 
   local currentDirection = turtleFacingWay()
 
+  print(currentDirection)
+
+  os.sleep(10)
+
   local thisX, thisZ, thisY = gps.locate()
   local currentXChange = getToX-thisX
   local currentZChange = getToZ-thisZ
