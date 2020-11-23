@@ -50,8 +50,12 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
     end
 
     if(toGoHome == false) then
-        turnTowardsTurtle()
-        didDrop = dropBucketOfLava()
+        local isTurtleThere = turnTowardsTurtle()
+        if(isTurtleThere == true) then
+            local didDrop = dropBucketOfLava()
+        else
+            turtle.turnLeft()
+        end
         rednet.open("left")
         rednet.broadcast("Refueling:"..sendingMessage)
 
