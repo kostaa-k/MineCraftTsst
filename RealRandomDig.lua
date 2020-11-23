@@ -223,6 +223,9 @@ end
 
 numTilesDown = turtleDigDown(height)
 
+realDigRandom()
+
+
 local finishedX, finishedZ, finishedY = gps.locate()
 shell.run("Get_To", startingX, startingZ)
 
