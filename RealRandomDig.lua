@@ -159,7 +159,7 @@ function dropNonImportant(count)
     return false
   end
 
-function realDigRandom()
+function realDigRandom(maxTiles, toDropEvery)
 
   local listOfMoves = {}
     
@@ -223,7 +223,7 @@ end
 
 numTilesDown = turtleDigDown(height)
 
-realDigRandom()
+realDigRandom(tilesToDig, dropEvery)
 
 
 local finishedX, finishedZ, finishedY = gps.locate()
