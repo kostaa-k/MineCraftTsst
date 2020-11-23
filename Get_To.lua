@@ -123,26 +123,37 @@ function getToCoords(getToX, getToZ)
 
   if(thisX > getToX) then
     turtleFaceDirection(currentDirection, "W")
+    while(thisX > getToX) do
+        digInLine(1)
+        local thisX, thisZ, thisY = gps.locate()
+        print(thisX, getToX)
+    end
+  
   elseif(thisX < getToX) then
     turtleFaceDirection(currentDirection, "E")
-  end
-
-  while(thisX ~= getToX) do
-      digInLine(1)
-      local thisX, thisZ, thisY = gps.locate()
-      print(thisX, getToX)
+    while(thisX < getToX) do
+        digInLine(1)
+        local thisX, thisZ, thisY = gps.locate()
+        print(thisX, getToX)
+    end
   end
 
   if(thisZ > getToZ) then
     turtleFaceDirection(currentDirection, "N")
+
+    while(thisZ > getToZ) do
+        digInLine(1)
+        local thisX, thisZ, thisY = gps.locate()
+    end
   elseif(thisZ < getToZ) then
     turtleFaceDirection(currentDirection, "S")
+
+    while(thisZ < getToZ) do
+        digInLine(1)
+        local thisX, thisZ, thisY = gps.locate()
+    end
   end
 
-  while(thisZ ~= getToZ) do
-    digInLine(1)
-    local thisX, thisZ, thisY = gps.locate()
-  end
 
 end
 
