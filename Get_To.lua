@@ -9,7 +9,18 @@ if #arg > 1 then
     whatZ = tonumber(arg[2])
 end
 
+function selectCorrectSlot()
+    for i=1, 16 do
+        turtle.select(i)
+        local isSame = turtle.compare()
+        if(isSame == true) then
+            return i
+        end
+    end
 
+    turtle.select(1)
+    return 0
+end
 
 function digInLine(numberOfTiles)
     for i=1,(numberOfTiles) do
@@ -118,6 +129,8 @@ function getToCoords(getToX, getToZ)
 
   while(thisX ~= getToX) do
       digInLine(1)
+      local thisX, thisZ, thisY = gps.locate()
+      print(thisX, getToX)
   end
 
   if(thisZ > getToZ) then
@@ -128,6 +141,7 @@ function getToCoords(getToX, getToZ)
 
   while(thisZ ~= getToZ) do
     digInLine(1)
+    local thisX, thisZ, thisY = gps.locate()
   end
 
 end
