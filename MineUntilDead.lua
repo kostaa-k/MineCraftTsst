@@ -94,8 +94,11 @@ end
 for x=1, 100 do
     for i=1, 10 do
         local numToGo = math.random(35, height)
-        shell.run("MineRandomly", numToGo, tilesToDig, dropEvery)
+        shell.run("RealRandomDig", numToGo, tilesToDig, dropEvery)
     end
 
-    broadcastForFuel(isItACorner)
+    local curFuel = tonumber(turtle.getFuelLevel())
+    if(curFuel < 10000) then
+        broadcastForFuel(isItACorner)
+    end
 end
