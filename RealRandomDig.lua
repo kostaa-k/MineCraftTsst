@@ -159,50 +159,6 @@ function dropNonImportant(count)
     return false
   end
 
-function digRandomly(maxTiles, toDropEvery)
-    
-    local listOfMoves = {}
-    
-    local numOfMoves = 0
-
-    while(numOfMoves < maxTiles) do 
-        if(math.fmod(numOfMoves, toDropEvery) == 0) then
-            dropNonImportant(1)
-        end
-        numTurns = 0
-        canGo = false
-        while(numTurns < 4) do
-            if(turtle.detect() == false) then
-                turtle.turnRight()
-                numTurns = numTurns+1
-            else
-                canGo = true
-                if(numTurns == 1) then
-                    table.insert(listOfMoves, "R")
-                else if (numTurns == 3) then
-                    table.insert(listOfMoves, "L")
-                end
-                
-                end
-
-                numTurns = 4
-            end
-        end
-
-        if(canGo == false) then
-            digInLine(1)
-            numOfMoves = numOfMoves+1
-            table.insert(listOfMoves, "S")
-        else
-            digInLine(1)
-            table.insert(listOfMoves, "S")
-            numOfMoves = numOfMoves+1
-        end
-
-    end
-    return listOfMoves
-end
-
 function realDigRandom()
 
   local listOfMoves = {}
@@ -258,45 +214,6 @@ function turnRandomly()
 end
 
 
-function createReverseList(forwardMoves)
-
-    local reverseMoves = {}
-
-    for i = #forwardMoves, 1, -1 do
-        local value = forwardMoves[i]
-        if(value == "R") then
-            table.insert(reverseMoves, "L")
-        elseif(value == "L") then
-            table.insert(reverseMoves, "R")
-        else
-            table.insert(reverseMoves, value)
-        end
-    end
-
-    return reverseMoves
-
-end
-
-function traverseBackWards(movesToMake)
-    turtle.turnRight()
-    turtle.turnRight()
-
-    for i =1, #movesToMake do
-        local value = movesToMake[i]
-        if(value == "L") then
-            turtle.turnLeft()
-        elseif(value == "R") then
-            turtle.turnRight()
-        else
-            digInLine(1)
-        end
-    end
-
-    turtle.turnRight()
-    turtle.turnRight()
-
-end
-
 function dropInChestUp()
   for i=1,16 do
     turtle.select(i)
@@ -306,15 +223,8 @@ end
 
 numTilesDown = turtleDigDown(height)
 
-theMoves = digRandomly(tilesToDig, dropEvery)
-theReverseMoves = createReverseList(theMoves)
-
-traverseBackWards(theReverseMoves)
-
 local finishedX, finishedZ, finishedY = gps.locate()
-if(finishedX ~= startingX or finishedZ ~= startingZ) then
-  shell.run("Get_To", finishedX, finishedZ)
-end
+shell.run("Get_To", startingX, startingZ)
 
 
 local howManyGoingUp = numTilesDown-NumTimesWentUp
