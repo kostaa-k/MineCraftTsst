@@ -1,11 +1,11 @@
 
 
-local turtleHomeLocationX = 506
+local turtleHomeLocationX = 1070
 if #arg > 0 then 
     turtleHomeLocationX = tonumber(arg[1])
 end
 
-local turtleHomeLocationZ = 466
+local turtleHomeLocationZ = 2026
 if #arg > 1 then 
     turtleHomeLocationZ = tonumber(arg[2])
 end
