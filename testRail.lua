@@ -39,13 +39,11 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
     local currentX, currentZ, currentY = gps.locate()
     local distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
 
-    print(distFromTurtle)
 
     local hasRedStone = false
     while(distFromTurtle > 1) do
         hasRedStone = moveForward(hasRedStone)
         currentX, currentZ, currentY = gps.locate()
-        print(getLocationHash(currentX, currentZ))
         distFromTurtle = getDistanceFromPoint(currentX, currentZ, turtleX, turtleZ)
     end
 
@@ -63,6 +61,8 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
 
     else
         local theSuccess = turnTowardsChest()
+        print("Dropping all buckets")
+        os.sleep(2)
         dropallBuckets()
         print(theSuccess)
         turtle.suck()
@@ -76,6 +76,7 @@ function goToTurtle(turtleX, turtleZ, toGoHome, sendingMessage)
         turtle.suck()
         turtle.suck()
         turtle.suck()
+        print("Got full buckets")
     end
 
 end

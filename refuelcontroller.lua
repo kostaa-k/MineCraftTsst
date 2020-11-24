@@ -40,7 +40,7 @@ function actOnMessage(theMessage)
     local reconstructedMessage = xValueStr..","..zValueStr
 
     shell.run("testRail", xValue, zValue, reconstructedMessage)
-    shell.run("testRail", turtleHomeLocationX, turtleHomeLocationZ, 3, 4)
+    shell.run("testRail", turtleHomeLocationX, turtleHomeLocationZ, "go back home", 4)
 end
 
 
